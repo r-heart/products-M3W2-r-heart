@@ -1,15 +1,9 @@
-import React from "react";
+import useProducts from "./hooks/useProducts";
 
-const BASE_URL = "http://localhost:3001/products";
 
 function App() {
-  const [products, setProducts] = React.useState([]);
-
-  React.useEffect(() => {
-    fetch(BASE_URL).then(resp => resp.json()).then(data => {
-      setProducts(data)
-    })
-  }, []);
+  const products = useProducts();
+  console.log(products);
 
   return <h1 className="text-3xl font-bold underline">Hello world!</h1>;
 }
