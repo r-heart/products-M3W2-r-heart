@@ -1,6 +1,8 @@
 import PropTypes from "prop-types";
 import { InputCheckbox, InputSearch, Select } from "./Form";
 
+// TODO: receive state dispatch functions as props
+
 export default function SearchBar({ categories }) {
   return (
     <form className="my-4 flex flex-col items-center gap-y-4">

@@ -1,20 +1,15 @@
 import PropTypes from "prop-types";
 import ListItem from "./ListItem";
 
-export default function ProductList({ products }) {
+const ProductList = ({ products }) => {
   return (
     <ul className="container mx-auto mt-8 flex flex-col items-center justify-center">
       {products.map((product) => (
-        <ListItem
-          key={product.id}
-          id={product.id}
-          name={product.name}
-          price={product.price}
-        />
+        <ListItem key={product.id} product={product} />
       ))}
     </ul>
   );
-}
+};
 
 ProductList.propTypes = {
   products: PropTypes.arrayOf(
@@ -25,3 +20,5 @@ ProductList.propTypes = {
     })
   ).isRequired,
 };
+
+export default ProductList;
