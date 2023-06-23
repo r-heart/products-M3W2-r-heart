@@ -10,6 +10,7 @@ function App() {
 
   // TODO: Use useState to manage the stte of the search bar (setSearchTerm setInStockOnly, set Category)
   const [searchTerm, setSearchTerm] = useState("");
+  const [category, setCategory] = useState("all");
 
   return (
     <>
@@ -17,11 +18,14 @@ function App() {
       <SearchBar
         categories={[...new Set(products.map((product) => product.category))]}
         setSearchTerm={setSearchTerm}
+        setCategory={setCategory}
       />
       <ProductList
-        products={products.filter((product) =>
-          product.name.includes(searchTerm.toLowerCase())
-        )}
+        products={products
+          .filter((product) => product.name.includes(searchTerm.toLowerCase()))
+          .filter(
+            (product) => category === "all" || product.category === category
+          )}
       />
     </>
   );
