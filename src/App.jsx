@@ -7,14 +7,16 @@ function App() {
   console.log(products);
 
   return (
-    <ul className="container mx-auto mt-8 flex flex-col items-center justify-center">
-      {products.map((product) => (
-        <li key={product.id}>
-          {product.name} - {product.price}
-        </li>
-      ))}
-    </ul>
+    <>
+      <h1 className="my-4 text-center text-2xl font-black">Product App</h1>
+      <ul className="container mx-auto mt-8 flex flex-col items-center justify-center">
+        {products.map((product) => (
+          <li key={product.id} className="border-y py-2">
+            {product.name} - {product.price}
+          </li>
+        ))}
+      </ul>
+    </>
   );
 }
-
 export default App;
