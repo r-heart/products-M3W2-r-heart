@@ -1,3 +1,4 @@
+import ProductList from "./components/ProductList/ProductList.jsx";
 import SearchBar from "./components/SearchBar";
 import useFetch from "./hooks/useFetch";
 
@@ -13,13 +14,7 @@ function App() {
       <SearchBar
         categories={[...new Set(products.map((product) => product.category))]}
       />
-      <ul className="container mx-auto mt-8 flex flex-col items-center justify-center">
-        {products.map((product) => (
-          <li key={product.id} className="border-y py-2">
-            {product.name} - {product.price}
-          </li>
-        ))}
-      </ul>
+      <ProductList products={products} />
     </>
   );
 }
