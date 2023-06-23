@@ -3,10 +3,16 @@ import { InputCheckbox, InputSearch, Select } from "./Form";
 
 // TODO: receive state dispatch functions as props
 
-export default function SearchBar({ categories }) {
+export default function SearchBar({ categories, setSearchTerm }) {
   return (
     <form className="my-4 flex flex-col items-center gap-y-4">
-      <InputSearch id="search" label="Search" />
+      <InputSearch
+        id="search"
+        label="Search"
+        onChange={(event) => {
+          setSearchTerm(event.target.value);
+        }}
+      />
 
       {/* Prop Drilling */}
       <Select id="category" label="Category" options={categories} />
@@ -17,4 +23,5 @@ export default function SearchBar({ categories }) {
 
 SearchBar.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
+  setSearchTerm: PropTypes.func.isRequired,
 };
