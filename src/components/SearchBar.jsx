@@ -1,3 +1,4 @@
+import InputCheckbox from "./Form/InputCheckbox";
 import InputSearch from "./Form/InputSearch";
 
 export default function SearchBar() {
@@ -12,11 +13,7 @@ export default function SearchBar() {
         <option value="sporting goods">Sporting Goods</option>
         <option value="electronics">Electronics</option>
       </select>
-
-      <div className="flex items-center gap-x-2">
-        <input type="checkbox" id="in-stock-only" />
-        <label htmlFor="in-stock-only">Only show products in stock</label>
-      </div>
+      <InputCheckbox id="in-stock-only" label="Only show products in stock" />
     </form>
   );
 }
