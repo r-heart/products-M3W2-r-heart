@@ -1,17 +1,14 @@
-import { useState } from "react";
 import ProductList from "./components/ProductList/ProductList.jsx";
 import SearchBar from "./components/SearchBar";
 import useFetch from "./hooks/useFetch";
+import userSearch from "./hooks/useSearch.jsx";
 
 const BASE_URL = "http://localhost:3001/products";
 
 function App() {
   const products = useFetch(BASE_URL);
-
-  // TODO: Use useState to manage the stte of the search bar (setSearchTerm setInStockOnly, set Category)
-  const [searchTerm, setSearchTerm] = useState("");
-  const [category, setCategory] = useState("all");
-  const [inStockOnly, setInStockOnly] = useState(false);
+  const { setSearchTerm, setCategory, setInStockOnly, filteredProducts } =
+    userSearch(products);
 
   return (
     <>
@@ -22,16 +19,7 @@ function App() {
         setCategory={setCategory}
         setInStockOnly={setInStockOnly}
       />
-      <ProductList
-        products={products
-          .filter((product) =>
-            product.name.toLowerCase().includes(searchTerm.toLowerCase())
-          )
-          .filter(
-            (product) => category === "all" || product.category === category
-          )
-          .filter((product) => !inStockOnly || product.stocked)}
-      />
+      <ProductList products={filteredProducts} />
     </>
   );
 }
