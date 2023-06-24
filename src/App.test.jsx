@@ -63,3 +63,26 @@ it("filters by category", async () => {
 
   expect(actualProducts).toHaveLength(expectedProducts.length);
 });
+
+it("filter by in stock only", async () => {
+  const user = userEvent.setup();
+
+  const filteredProducts = data.products.filter((product) => product.stocked);
+
+  render(<App />);
+
+  const inStockCheckbox = screen.getByRole("checkbox", {
+    // Includes the phrase 'in stock' in the label (REgEx)
+    name: /in stock/i,
+  });
+
+  // Wait for the products to load
+
+  await screen.findAllByRole("listitem");
+
+  await user.click(inStockCheckbox);
+
+  const displayedProducts = await screen.findAllByRole("listitem");
+
+  expect(displayedProducts).toHaveLength(filteredProducts.length);
+});
