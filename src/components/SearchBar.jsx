@@ -3,7 +3,12 @@ import { InputCheckbox, InputSearch, Select } from "./Form";
 
 // TODO: receive state dispatch functions as props
 
-export default function SearchBar({ categories, setSearchTerm, setCategory }) {
+export default function SearchBar({
+  categories,
+  setSearchTerm,
+  setCategory,
+  setInStockOnly,
+}) {
   return (
     <form className="my-4 flex flex-col items-center gap-y-4">
       <InputSearch
@@ -23,7 +28,13 @@ export default function SearchBar({ categories, setSearchTerm, setCategory }) {
           setCategory(event.target.value);
         }}
       />
-      <InputCheckbox id="in-stock-only" label="Only show products in stock" />
+      <InputCheckbox
+        id="in-stock-only"
+        label="Only show products in stock"
+        onChange={() => {
+          setInStockOnly((prev) => !prev);
+        }}
+      />
     </form>
   );
 }
@@ -31,5 +42,6 @@ export default function SearchBar({ categories, setSearchTerm, setCategory }) {
 SearchBar.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.string).isRequired,
   setSearchTerm: PropTypes.func.isRequired,
-  setCatgory: PropTypes.func.required,
+  setCategory: PropTypes.func.isRequired,
+  setInStockOnly: PropTypes.func.isRequired,
 };
