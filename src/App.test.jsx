@@ -28,7 +28,7 @@ describe("🔍 Search", () => {
     render(<App />);
 
     // Act
-    const searchInput = screen.getAllByRole("searchbox");
+    const searchInput = screen.getByRole("searchbox");
 
     // *Make sure that the product list is loaded
     await screen.findAllByRole("listitem");
@@ -40,4 +40,26 @@ describe("🔍 Search", () => {
     // Assert
     expect(actualProducts).toHaveLength(expectedProducts.length);
   });
+});
+
+it("filters by category", async () => {
+  const category = "Electronics";
+
+  const user = userEvent.setup();
+
+  const expectedProducts = data.products.filter(
+    (product) => product.category === category
+  );
+
+  render(<App />);
+
+  const categorySelect = await screen.findByRole("combobox", category);
+
+  await screen.findAllByRole("listitem");
+
+  await user.selectOptions(categorySelect, category);
+
+  const actualProducts = screen.getAllByRole("listitem");
+
+  expect(actualProducts).toHaveLength(expectedProducts.length);
 });
