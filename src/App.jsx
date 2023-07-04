@@ -1,14 +1,14 @@
 import ProductList from "./components/ProductList/ProductList.jsx";
 import SearchBar from "./components/SearchBar";
 import useFetch from "./hooks/useFetch";
-import userSearch from "./hooks/useSearch.jsx";
+import useSearch from "./hooks/useSearch.jsx";
 
 const BASE_URL = "http://localhost:3001/products";
 
 function App() {
   const products = useFetch(BASE_URL);
   const { setSearchTerm, setCategory, setInStockOnly, filteredProducts } =
-    userSearch(products);
+    useSearch(products);
 
   return (
     <>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function userSearch(products) {
+export default function useSearch(products) {
   const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("all");
   const [inStockOnly, setInStockOnly] = useState(false);
